@@ -67,5 +67,6 @@
 
   <modules>
     <module>onebeartoe-sports-scoreboard-webapp</module>
+    <module>onebeartoe-sports-scoreboard-frame-buffer-display</module>
   </modules>
 </project>

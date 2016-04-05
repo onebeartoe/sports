@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import jfxtras.labs.scene.control.gauge.Lcd ?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" 
+            id="AnchorPane" prefHeight="200" prefWidth="320" 
+            xmlns="http://javafx.com/javafx/8" 
+            fx:controller="org.onebeartoe.sports.scoreboard.frame.buffer.display.FXMLController">
+    <children>
+        <BorderPane AnchorPane.leftAnchor="51.0">
+            <left>
+                 <Button fx:id="button" onAction="#handleButtonAction" text="Click Me!" BorderPane.alignment="CENTER" />
+            </left>
+            <top>
+                 <Label fx:id="label" minHeight="16" minWidth="69" BorderPane.alignment="CENTER" />
+            </top>
+            <center>
+                <Lcd fx:id="lcd">
+                </Lcd>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>
