@@ -10,16 +10,39 @@
 <AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.onebeartoe.sports.scoreboard.frame.buffer.display.FXMLController">
     <children>
         <BorderPane fx:id="borderPane" layoutX="-3.0" prefHeight="200.0" prefWidth="320.0" AnchorPane.leftAnchor="-3.0">
-            <left>
-                 <Button fx:id="button" onAction="#handleButtonAction" text="Click Me!" BorderPane.alignment="CENTER" />
-            </left>
             <top>
-                 <Label fx:id="label" minHeight="16" minWidth="69" BorderPane.alignment="CENTER" />
+                 <Label fx:id="clockLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="16" minWidth="69" prefHeight="100.0" prefWidth="320.0" textAlignment="CENTER" BorderPane.alignment="CENTER" />
             </top>
             <center>
-                <!--Lcd fx:id="otherLcd" minHeight="116" minWidth="169">
-                </Lcd-->
             </center>
+         <center>
+            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <!--BorderPane prefHeight="200.0" prefWidth="200.0" /-->
+                  <BorderPane>
+                     <top>
+                        <Label fx:id="homeLabel" text="Home" BorderPane.alignment="CENTER" />
+                     </top>
+                     <center>
+                        <Label text="Label" BorderPane.alignment="CENTER" />
+                     </center></BorderPane>
+                  <BorderPane>
+                     <center>
+                        <Label text="Label" BorderPane.alignment="CENTER" />
+                     </center>
+                     <bottom>
+                        <Label text="Label" BorderPane.alignment="CENTER" />
+                     </bottom></BorderPane>
+                  <BorderPane>
+                     <top>
+                        <Label text="Label" BorderPane.alignment="CENTER" />
+                     </top>
+                     <center>
+                        <Label text="Label" BorderPane.alignment="CENTER" />
+                     </center></BorderPane>
+               </children>
+            </HBox>
+         </center>
             
         </BorderPane>
     </children>

@@ -2,76 +2,103 @@ package org.onebeartoe.sports.scoreboard.frame.buffer.display;
 
 import java.io.InputStream;
 import java.net.URL;
+import java.time.Duration;
+import java.util.Date;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
+import java.util.Timer;
+import java.util.TimerTask;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import jfxtras.labs.scene.control.gauge.GaugeModel;
-import jfxtras.labs.scene.control.gauge.Lcd;
 
+/**
+ * The scoreboard was inspired by this image: http://www.electro-mech.com/colorpicker_image.php?model=lx2340&primary=navy_blue&leds=amber&caption=white&accent=white
+ * 
+ * @author Roberto Marquez
+ */
 public class FXMLController implements Initializable 
-{    
+{   
     @FXML
-    private Label label;
+    private Label clockLabel;
     
     @FXML
-    private BorderPane borderPane;
+    private Label homeLabel;
     
-    private Lcd lcd;
+    private Timer timer;
     
-    @FXML
-    private void handleButtonAction(ActionEvent event) 
-    {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
+    private TimerTask clickTask;
+    
+    private int clockValue = 60;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        
-        
-        GaugeModel gm = new GaugeModel();
-        gm.setLcdValue(10.5);
-        gm.setLastLabelVisible(true);
-        gm.setValue(2.3);
-        gm.setTitle("some tiel");
-//        lcd.setGaugeModel(gm);
-//        lcd.setLcdDesign(LcdDesign.BEIGE);
-//        lcd.setPrefWidth(200);
-//        lcd.setPrefHeight(85);
+        Font font = fourteenSegementFont();
 
-//        Platform.runLater( new Runnable()
-//        {
-//            @Override
-//            public void run()
-//            {
-//                Lcd lcd = LcdBuilder.create()
-//                .value(3.4)
-//                .title("some tile")
-//                .build();
-//
-//                borderPane.setBottom(lcd);
-//            }
-//        });
+        clockLabel.setFont(font);
+        clockLabel.setTextFill(Color.YELLOW);
+        Background bg = new Background( new BackgroundFill(Color.BLACK, null, null) );
+        clockLabel.setBackground(bg);
+        
+        Date firstTime = new Date();
+        clickTask = new ClockTask();
 
-        // resource for setting the font in Javafx text componants: http://docs.oracle.com/javafx/2/text/jfxpub-text.htm
-        // custom 14 segment font from: https://fontlibrary.org/en/font/segment14
-        // the 14 segment was referenced here: http://graphicdesign.stackexchange.com/questions/15571/where-can-i-find-a-font-with-numbers-letters-and-symbols-to-use-in-a-design-of
+        timer = new Timer();
+        
+        final long period = Duration.ofSeconds(1).toMillis();
+        
+        timer.schedule(clickTask, firstTime, period);
+    }
+
+    /**
+     * The resource used for setting the font in Javafx text componants: http://docs.oracle.com/javafx/2/text/jfxpub-text.htm
+     * The custom 14 segment font from: https://fontlibrary.org/en/font/segment14
+     * The 14 segment was referenced from: http://graphicdesign.stackexchange.com/questions/15571/where-can-i-find-a-font-with-numbers-letters-and-symbols-to-use-in-a-design-of
+     * 
+     * @return a font that looks like a 14 segment display
+     */    
+    private Font fourteenSegementFont()
+    {
         String fontName = "Segment14.otf";
         String fontClasspath = "/" + fontName;
         InputStream instream = getClass().getResourceAsStream(fontClasspath);
         
-        Font font = Font.loadFont(instream, 20);
-
-        Text text =  new Text("hi - 22 - 24");
-        text.setFont(font);
-        text.setFill(Color.RED);
-        borderPane.setBottom(text);
+        Font font = Font.loadFont(instream, 40);
+        
+        return font;
+    }
+    
+    public void stopThreads()
+    {
+        timer.cancel();
+    }
+    
+    private class ClockTask extends TimerTask
+    {
+        @Override
+        public void run()
+        {                
+            clockValue--;
+            
+            if(clockValue < 0)
+            {
+                clockValue = 100;
+            }
+            
+            Platform.runLater( new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    String clock = "1:" + clockValue;
+                    clockLabel.setText(clock);
+                }
+            } );
+        }
     }    
 }
