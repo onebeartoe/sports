@@ -7,16 +7,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import jfxtras.labs.scene.control.gauge.Lcd;
-
 public class MainApp extends Application 
 {
-
     @Override
     public void start(Stage stage) throws Exception 
     {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
-        
+
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
         

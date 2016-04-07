@@ -5,15 +5,11 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import jfxtras.labs.scene.control.gauge.* ?>
 
-<?import jfxtras.labs.scene.control.gauge.Lcd ?>
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" 
-            id="AnchorPane" prefHeight="200" prefWidth="320" 
-            xmlns="http://javafx.com/javafx/8" 
-            fx:controller="org.onebeartoe.sports.scoreboard.frame.buffer.display.FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.onebeartoe.sports.scoreboard.frame.buffer.display.FXMLController">
     <children>
-        <BorderPane AnchorPane.leftAnchor="51.0">
+        <BorderPane fx:id="borderPane" layoutX="-3.0" prefHeight="200.0" prefWidth="320.0" AnchorPane.leftAnchor="-3.0">
             <left>
                  <Button fx:id="button" onAction="#handleButtonAction" text="Click Me!" BorderPane.alignment="CENTER" />
             </left>
@@ -21,9 +17,10 @@
                  <Label fx:id="label" minHeight="16" minWidth="69" BorderPane.alignment="CENTER" />
             </top>
             <center>
-                <Lcd fx:id="lcd">
-                </Lcd>
+                <!--Lcd fx:id="otherLcd" minHeight="116" minWidth="169">
+                </Lcd-->
             </center>
+            
         </BorderPane>
     </children>
 </AnchorPane>
