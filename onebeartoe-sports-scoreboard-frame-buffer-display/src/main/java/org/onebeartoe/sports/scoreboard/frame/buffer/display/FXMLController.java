@@ -41,6 +41,9 @@ public class FXMLController implements Initializable
     
     private int clockValue = 60;
     
+    @FXML
+    private Label minutesLabel;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
@@ -50,6 +53,9 @@ public class FXMLController implements Initializable
         clockLabel.setFont(font);
         clockLabel.setTextFill(Color.YELLOW);
         clockLabel.setBackground(bg);
+        
+        minutesLabel.setFont(font);
+        minutesLabel.setTextFill(Color.YELLOW);
         
         homeScoreLabel.setFont(font);
         homeScoreLabel.setTextFill(Color.RED);
@@ -104,12 +110,13 @@ public class FXMLController implements Initializable
                 clockValue = 100;
             }
             
+// WHY ISN'T JAVA 8 WORKING?            
             Platform.runLater( new Runnable()
             {
                 @Override
                 public void run()
                 {
-                    String clock = "1(" + clockValue;
+                    String clock = "" + clockValue;
                     clockLabel.setText(clock);
                 }
             } );

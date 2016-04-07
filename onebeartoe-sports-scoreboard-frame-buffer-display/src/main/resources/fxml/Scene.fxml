@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.paint.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -11,9 +12,6 @@
 <AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.onebeartoe.sports.scoreboard.frame.buffer.display.FXMLController">
     <children>
         <BorderPane fx:id="borderPane" layoutX="-3.0" prefHeight="200.0" prefWidth="320.0" AnchorPane.leftAnchor="-3.0">
-            <top>
-                 <Label fx:id="clockLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="16" minWidth="69" prefHeight="100.0" prefWidth="320.0" textAlignment="CENTER" BorderPane.alignment="CENTER" />
-            </top>
             <center>
             </center>
          <center>
@@ -22,21 +20,24 @@
                   <!--BorderPane prefHeight="200.0" prefWidth="200.0" /-->
                   <BorderPane maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="126.0">
                      <top>
-                        <Label fx:id="homeLabel" text="Home" textFill="WHITE" BorderPane.alignment="CENTER" />
+                        <Label fx:id="homeLabel" text="HOME" textFill="WHITE" BorderPane.alignment="CENTER" />
                      </top>
                      <center>
                         <Label fx:id="homeScoreLabel" text="10" BorderPane.alignment="CENTER" />
                      </center></BorderPane>
                   <BorderPane maxWidth="1.7976931348623157E308" style="-fx-background-color: black;">
                      <center>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="61.0" prefWidth="87.0" text="2" textAlignment="CENTER" textFill="#40a443" BorderPane.alignment="CENTER" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="41.0" prefWidth="87.0" text="2" textAlignment="CENTER" textFill="#40a443" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="36.0" />
+                           </font></Label>
                      </center>
                      <bottom>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Period" textAlignment="CENTER" textFill="WHITE" BorderPane.alignment="CENTER" />
+                        <Label alignment="TOP_CENTER" contentDisplay="TOP" maxWidth="1.7976931348623157E308" prefHeight="33.0" prefWidth="87.0" text="PERIOD" textAlignment="CENTER" textFill="WHITE" BorderPane.alignment="TOP_CENTER" />
                      </bottom></BorderPane>
                   <BorderPane maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="108.0">
                      <top>
-                        <Label text="Away" textFill="WHITE" BorderPane.alignment="CENTER" />
+                        <Label text="AWAY" textFill="WHITE" BorderPane.alignment="CENTER" />
                      </top>
                      <center>
                         <Label fx:id="awayScoreLabel" text="8" BorderPane.alignment="CENTER" />
@@ -44,6 +45,18 @@
                </children>
             </HBox>
          </center>
+         <top>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="minutesLabel" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefHeight="100.0" prefWidth="150.0" text="1" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="19.0" text=":">
+                     <font>
+                        <Font size="40.0" />
+                     </font></Label>
+                       <Label fx:id="clockLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="16" minWidth="69" prefHeight="100.0" prefWidth="174.0" textAlignment="CENTER" />
+               </children>
+            </HBox>
+         </top>
             
         </BorderPane>
     </children>
