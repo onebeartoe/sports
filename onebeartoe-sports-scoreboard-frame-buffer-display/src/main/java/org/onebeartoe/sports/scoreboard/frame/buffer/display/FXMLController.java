@@ -27,7 +27,13 @@ public class FXMLController implements Initializable
     private Label clockLabel;
     
     @FXML
+    private Label homeScoreLabel;
+    
+    @FXML
     private Label homeLabel;
+    
+    @FXML
+    private Label awayScoreLabel;
     
     private Timer timer;
     
@@ -39,11 +45,19 @@ public class FXMLController implements Initializable
     public void initialize(URL url, ResourceBundle rb) 
     {
         Font font = fourteenSegementFont();
-
+        Background bg = new Background( new BackgroundFill(Color.BLACK, null, null) );
+        
         clockLabel.setFont(font);
         clockLabel.setTextFill(Color.YELLOW);
-        Background bg = new Background( new BackgroundFill(Color.BLACK, null, null) );
         clockLabel.setBackground(bg);
+        
+        homeScoreLabel.setFont(font);
+        homeScoreLabel.setTextFill(Color.RED);
+        homeScoreLabel.setBackground(bg);
+        
+        awayScoreLabel.setFont(font);
+        awayScoreLabel.setTextFill(Color.RED);
+        awayScoreLabel.setBackground(bg);
         
         Date firstTime = new Date();
         clickTask = new ClockTask();
@@ -95,7 +109,7 @@ public class FXMLController implements Initializable
                 @Override
                 public void run()
                 {
-                    String clock = "1:" + clockValue;
+                    String clock = "1(" + clockValue;
                     clockLabel.setText(clock);
                 }
             } );
