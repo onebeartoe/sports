@@ -17,7 +17,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 /**
- * The scoreboard was inspired by this image: http://www.electro-mech.com/colorpicker_image.php?model=lx2340&primary=navy_blue&leds=amber&caption=white&accent=white
+ * The scoreboard was inspired by this image: 
+ * 
+ *  http://www.electro-mech.com/colorpicker_image.php?model=lx2340&primary=navy_blue&leds=amber&caption=white&accent=white
  * 
  * @author Roberto Marquez
  */
@@ -52,7 +54,7 @@ public class FXMLController implements Initializable
         
         clockLabel.setFont(font);
         clockLabel.setTextFill(Color.YELLOW);
-        clockLabel.setBackground(bg);
+//        clockLabel.setBackground(bg);
         
         minutesLabel.setFont(font);
         minutesLabel.setTextFill(Color.YELLOW);

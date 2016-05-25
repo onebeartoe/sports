@@ -7,15 +7,16 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+
 <!--?import jfxtras.labs.scene.control.gauge.* ?-->
 
 <AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.onebeartoe.sports.scoreboard.frame.buffer.display.FXMLController">
     <children>
-        <BorderPane fx:id="borderPane" layoutX="-3.0" prefHeight="200.0" prefWidth="320.0" AnchorPane.leftAnchor="-3.0">
+        <BorderPane fx:id="borderPane" layoutX="-3.0" prefHeight="200.0" prefWidth="320.0" style="-fx-background-color: linear-gradient(to bottom, #00008b 73% , #0000ff);;" AnchorPane.leftAnchor="-3.0">
             <center>
             </center>
          <center>
-            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <!--BorderPane prefHeight="200.0" prefWidth="200.0" /-->
                   <BorderPane maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="126.0">
@@ -25,7 +26,7 @@
                      <center>
                         <Label fx:id="homeScoreLabel" text="10" BorderPane.alignment="CENTER" />
                      </center></BorderPane>
-                  <BorderPane maxWidth="1.7976931348623157E308" style="-fx-background-color: black;">
+                  <BorderPane maxWidth="1.7976931348623157E308">
                      <center>
                         <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="41.0" prefWidth="87.0" text="2" textAlignment="CENTER" textFill="#40a443" BorderPane.alignment="CENTER">
                            <font>
@@ -46,7 +47,7 @@
             </HBox>
          </center>
          <top>
-            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <Label fx:id="minutesLabel" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefHeight="100.0" prefWidth="150.0" text="1" />
                   <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="19.0" text=":">
