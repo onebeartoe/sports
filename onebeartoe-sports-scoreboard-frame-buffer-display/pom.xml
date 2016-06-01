@@ -19,7 +19,7 @@
     <name>onebeartoe-sports-scoreboard-frame-buffer-display</name>
 
     <properties>
-        <mainClass>org.onebeartoe.sports.scoreboard.frame.buffer.display.MainApp</mainClass>
+        <mainClass>org.onebeartoe.sports.scoreboard.frame.buffer.display.ScoreboardApp</mainClass>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>

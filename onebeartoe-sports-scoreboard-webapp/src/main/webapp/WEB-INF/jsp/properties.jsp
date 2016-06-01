@@ -5,6 +5,8 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.Map"%>
 
+<%@page import="org.onebeartoe.sports.scoreboard.frame.buffer.display.ScoreboardApp"%>
+
 <%
 	String contextPath = request.getContextPath();
 
