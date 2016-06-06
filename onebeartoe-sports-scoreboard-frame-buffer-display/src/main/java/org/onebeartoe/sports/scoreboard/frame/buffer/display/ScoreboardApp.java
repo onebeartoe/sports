@@ -11,6 +11,24 @@ public class ScoreboardApp extends Application
 {
     private static int period;
     
+    private static int awayScore;
+    
+    private static int homeScore;
+    
+    public static int adjustAwayScore(int delta)
+    {
+        awayScore += delta;
+        
+        return awayScore;
+    }
+    
+    public static int adjustHomeScore(int delta)
+    {
+        homeScore += delta;
+        
+        return homeScore;
+    }
+    
     public static String getDescription()
     {
         return "some scoreboard description";
@@ -25,6 +43,8 @@ public class ScoreboardApp extends Application
     public void init()
     {
         period = 2;
+        
+        resetGame();
     }
 
     /**
@@ -38,6 +58,13 @@ public class ScoreboardApp extends Application
     public static void main(String[] args) 
     {
         launch(args);
+    }
+    
+    private static void resetGame()
+    {
+        awayScore = 0;
+        
+        homeScore = 0;
     }
     
     @Override
