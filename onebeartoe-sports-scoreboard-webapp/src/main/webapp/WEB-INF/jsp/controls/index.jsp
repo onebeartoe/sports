@@ -9,7 +9,6 @@
 
          <!-- columns divs, float left, no margin so there is no space between column, width=1/3 -->
             <div id="column1" class="oneThirdColumn">
-                Increment
                 <input type="button" onclick="incrementHomeScore()" value="+">
             </div>
 
@@ -18,7 +17,6 @@
             </div>
 
             <div id="column3" class="oneThirdColumn">
-                Increment
                 <input type="button" onclick="incrementAwayScore()" value="+">
             </div>
         </div>
@@ -47,7 +45,8 @@
 
          <!-- columns divs, float left, no margin so there is no space between column, width=1/3 -->
             <div id="column1" class="oneThirdColumn">
-             Decrement
+
+                <input type="button" onclick="decrementHomeScore()" value="-">
             </div>
 
             <div id="column2" class="oneThirdColumn">
@@ -55,7 +54,7 @@
             </div>
 
             <div id="column3" class="oneThirdColumn">
-                Decrement
+                <input type="button" onclick="decrementAwayScore()" value="-">
             </div>
         </div>
 
