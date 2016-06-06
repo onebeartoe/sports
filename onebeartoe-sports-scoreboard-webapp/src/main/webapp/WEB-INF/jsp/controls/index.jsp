@@ -5,55 +5,56 @@
 
             
 <!-- sytling for the contentBox is from: http://stackoverflow.com/questions/9966890/best-way-to-do-columns-in-html-css -->            
-        <div id="contentBox" style="margin:0px auto; width:70%">
+        <div id="contentBox" class="contentBox">
 
          <!-- columns divs, float left, no margin so there is no space between column, width=1/3 -->
-            <div id="column1" style="float:left; margin:0; width:33%;">
+            <div id="column1" class="oneThirdColumn">
                 Increment
                 <input type="button" onclick="incrementHomeScore()" value="+">
             </div>
 
-            <div id="column2" style="float:left; margin:0;width:33%;">
+            <div id="column2" class="oneThirdColumn">
                 &nbsp;
             </div>
 
-            <div id="column3" style="float:left; margin:0;width:33%">
-             Increment
+            <div id="column3" class="oneThirdColumn">
+                Increment
+                <input type="button" onclick="incrementAwayScore()" value="+">
             </div>
         </div>
 
         <br class="clearingBreak">
 
-        <div id="contentBox" style="margin:0px auto; width:70%">
+        <div id="contentBox" class="contentBox">
 
          <!-- columns divs, float left, no margin so there is no space between column, width=1/3 -->
-            <div id="homeScore" style="float:left; margin:0; width:33%;">
+            <div id="homeScore" class="oneThirdColumn">
              Home
             </div>
 
-            <div id="column2" style="float:left; margin:0;width:33%;">
+            <div id="column2" class="oneThirdColumn">
              --:--
             </div>
 
-            <div id="awayScore" style="float:left; margin:0;width:33%">
+            <div id="awayScore" class="oneThirdColumn">
                 Away
             </div>
         </div>
 
         <br class="clearingBreak">
 
-        <div id="contentBox" style="margin:0px auto; width:70%">
+        <div id="contentBox" class="contentBox">
 
          <!-- columns divs, float left, no margin so there is no space between column, width=1/3 -->
-            <div id="column1" style="float:left; margin:0; width:33%;">
+            <div id="column1" class="oneThirdColumn">
              Decrement
             </div>
 
-            <div id="column2" style="float:left; margin:0;width:33%;">
+            <div id="column2" class="oneThirdColumn">
                 Start
             </div>
 
-            <div id="column3" style="float:left; margin:0;width:33%">
+            <div id="column3" class="oneThirdColumn">
                 Decrement
             </div>
         </div>
@@ -68,9 +69,8 @@
         <h3>logs</h3>
 
         <div class="featuredProject">
-            <div id="logs" class="logs" style="">
+            <div id="logs" class="logs">
 
             </div>
         </div>
     </div>
-

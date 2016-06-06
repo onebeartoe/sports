@@ -12,6 +12,9 @@
             <link rel="stylesheet" type="text/css" href="http://electronics.onebeartoe.org/css/layout.css" />
             <link rel="stylesheet" type="text/css" href="http://electronics.onebeartoe.org/css/style.css" />
             
+            <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/layout.css" />
+            <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/style.css" />
+            
             <script src="<%= request.getContextPath() %>/controls/scoreboard.js"></script>
 
             <title><%= title %></title>	
