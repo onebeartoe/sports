@@ -63,7 +63,7 @@ public class GameScoreServlet extends HttpServlet
             {
                 op = 0;
                 
-                logger.log(Level.WARNING, "The score servlet could not determine between home and away teams.");
+                logger.log(Level.WARNING, "The score servlet could not determine between incrementing or decremeting the score.");
             }
         }
 

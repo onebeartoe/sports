@@ -10,6 +10,9 @@ function incrementHomeScore()
     {
         if (xmlhttp.readyState==4 && xmlhttp.status==200)      
         {
+            var score = xmlhttp.responseText + "<br/>" + "Home";
+            document.getElementById("homeScore").innerHTML = score;
+            
             var s = xmlhttp.responseText + "<br/>" + document.getElementById("logs").innerHTML;
             document.getElementById("logs").innerHTML = s;
         }
