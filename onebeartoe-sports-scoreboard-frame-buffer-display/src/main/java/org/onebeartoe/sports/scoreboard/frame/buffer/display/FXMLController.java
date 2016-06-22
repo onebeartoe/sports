@@ -8,6 +8,8 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 import javafx.application.Platform;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -46,6 +48,36 @@ public class FXMLController implements Initializable
     @FXML
     private Label minutesLabel;
     
+    private IntegerProperty awayScore;
+    
+    private IntegerProperty homeScore;
+
+    public int adjustAwayScore(int delta)
+    {
+        int sum = awayScore.get() + delta;
+        
+        Platform.runLater( () -> 
+        {
+            awayScore.set(sum);
+        });
+        
+        
+        
+        return awayScore.getValue();
+    }
+
+    public int adjustHomeScore(int delta)
+    {
+        int sum = homeScore.get() + delta;
+        
+        Platform.runLater( () -> 
+        {
+            homeScore.set(sum);
+        });
+        
+        return homeScore.getValue();
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
@@ -54,7 +86,9 @@ public class FXMLController implements Initializable
         
         clockLabel.setFont(font);
         clockLabel.setTextFill(Color.YELLOW);
-//        clockLabel.setBackground(bg);
+
+        awayScore = new SimpleIntegerProperty(0);                        
+        homeScore = new SimpleIntegerProperty(0);
         
         minutesLabel.setFont(font);
         minutesLabel.setTextFill(Color.YELLOW);
@@ -66,6 +100,9 @@ public class FXMLController implements Initializable
         awayScoreLabel.setFont(font);
         awayScoreLabel.setTextFill(Color.RED);
         awayScoreLabel.setBackground(bg);
+        
+        awayScoreLabel.textProperty().bind( awayScore.asString() );
+        homeScoreLabel.textProperty().bind( homeScore.asString() );
         
         Date firstTime = new Date();
         clickTask = new ClockTask();
@@ -93,6 +130,13 @@ public class FXMLController implements Initializable
         Font font = Font.loadFont(instream, 40);
         
         return font;
+    }
+    
+    public void resetGame()
+    {        
+        awayScore.setValue(0);
+        
+        homeScore.setValue(0);
     }
     
     public void stopThreads()

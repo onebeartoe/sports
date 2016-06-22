@@ -22,7 +22,11 @@ public class ScoreboardFrameBufferServlet extends HttpServlet
 {
     private Logger logger;
     
-//    private DigitalClock clock;
+    @Override
+    public void destroy()
+    {
+        ScoreboardApp.shutdown();
+    }
     
     @Override
     public void init() throws ServletException 
@@ -31,8 +35,8 @@ public class ScoreboardFrameBufferServlet extends HttpServlet
         
         logger = Logger.getLogger( getClass().getName() );
    
-        logger.log(Level.INFO, "loading clock yay!");
-//        Application.launch(DigitalClock.class);
+        logger.log(Level.INFO, "loading the scoreboard");
+
         Application.launch(ScoreboardApp.class);
     }
     

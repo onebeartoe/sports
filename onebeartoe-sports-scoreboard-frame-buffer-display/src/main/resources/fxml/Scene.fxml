@@ -8,8 +8,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<!--?import jfxtras.labs.scene.control.gauge.* ?-->
-
 <AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.onebeartoe.sports.scoreboard.frame.buffer.display.FXMLController">
     <children>
         <BorderPane fx:id="borderPane" layoutX="-3.0" prefHeight="200.0" prefWidth="320.0" style="-fx-background-color: linear-gradient(to bottom, #00008b 73% , #0000ff);;" AnchorPane.leftAnchor="-3.0">

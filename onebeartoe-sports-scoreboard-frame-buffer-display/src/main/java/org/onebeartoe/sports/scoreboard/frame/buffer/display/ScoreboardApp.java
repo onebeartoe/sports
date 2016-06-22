@@ -1,5 +1,7 @@
+
 package org.onebeartoe.sports.scoreboard.frame.buffer.display;
 
+import java.net.URL;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,22 +13,22 @@ public class ScoreboardApp extends Application
 {
     private static int period;
     
-    private static int awayScore;
+    private FXMLLoader loader;
     
-    private static int homeScore;
+    private static FXMLController controller;
     
     public static int adjustAwayScore(int delta)
     {
-        awayScore += delta;
+        int updatedValue = controller.adjustAwayScore(delta);
         
-        return awayScore;
+        return updatedValue;
     }
     
     public static int adjustHomeScore(int delta)
     {
-        homeScore += delta;
+        int updatedValue = controller.adjustHomeScore(delta);
         
-        return homeScore;
+        return updatedValue;
     }
     
     public static String getDescription()
@@ -62,19 +64,35 @@ public class ScoreboardApp extends Application
     
     private static void resetGame()
     {
-        awayScore = 0;
-        
-        homeScore = 0;
+        if(controller == null)
+        {
+            System.out.println("The controller is null, not going to reset game.");
+        }
+        else
+        {
+            controller.resetGame();
+        }
+    }
+    
+    public static void shutdown()
+    {
+        controller.stopThreads();
     }
     
     @Override
     public void start(Stage stage) throws Exception 
     {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
+        URL url = getClass().getResource("/fxml/Scene.fxml");
+        
+        loader = new FXMLLoader(url);
+        
+        Parent root = loader.load();
 
+        controller = loader.getController();
+        
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
-        
+
         stage.setTitle("Diego's Basketball Scoreboard");
         stage.setScene(scene);
         stage.show();

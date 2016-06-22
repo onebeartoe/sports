@@ -12,6 +12,7 @@
     <groupId>org.onebeartoe.sports</groupId>
     <artifactId>onebeartoe-sports-scoreboard-webapp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    
     <packaging>war</packaging>
 
     <name>onebeartoe-sports-scoreboard-webapp</name>
@@ -42,11 +43,11 @@
             <!--scope>provided</scope-->
         </dependency>
                         
-        <dependency>
+        <!--dependency>
             <groupId>org.onebeartoe.chronos</groupId>
             <artifactId>onebeartoe-chronos-digital-clock</artifactId>
             <version>0.0.1-SNAPSHOT</version>            
-        </dependency>
+        </dependency-->
     </dependencies>
 
     <build>
