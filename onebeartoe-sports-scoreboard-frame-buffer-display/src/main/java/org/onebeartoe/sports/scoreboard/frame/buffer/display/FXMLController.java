@@ -3,10 +3,12 @@ package org.onebeartoe.sports.scoreboard.frame.buffer.display;
 import java.io.InputStream;
 import java.net.URL;
 import java.time.Duration;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -43,14 +45,22 @@ public class FXMLController implements Initializable
     
     private TimerTask clickTask;
     
-    private int clockValue = 60;
+//    private int clockValue = 60;
     
     @FXML
     private Label minutesLabel;
     
     private IntegerProperty awayScore;
     
-    private IntegerProperty homeScore;
+    private IntegerProperty homeScore;    
+    
+    private long startTime;
+    
+    private long stopTime = -1;
+    
+    private Duration clock;
+    
+    private Duration periodLength = Duration.ofMinutes(2);
 
     public int adjustAwayScore(int delta)
     {
@@ -60,9 +70,7 @@ public class FXMLController implements Initializable
         {
             awayScore.set(sum);
         });
-        
-        
-        
+
         return awayScore.getValue();
     }
 
@@ -102,16 +110,14 @@ public class FXMLController implements Initializable
         awayScoreLabel.setBackground(bg);
         
         awayScoreLabel.textProperty().bind( awayScore.asString() );
-        homeScoreLabel.textProperty().bind( homeScore.asString() );
+        homeScoreLabel.textProperty().bind( homeScore.asString() );        
         
-        Date firstTime = new Date();
-        clickTask = new ClockTask();
-
+        
+        clock = Duration.ofMillis( periodLength.toMillis() );
+        
         timer = new Timer();
         
-        final long period = Duration.ofSeconds(1).toMillis();
-        
-        timer.schedule(clickTask, firstTime, period);
+startClock();        
     }
 
     /**
@@ -131,12 +137,42 @@ public class FXMLController implements Initializable
         
         return font;
     }
-    
+
     public void resetGame()
-    {        
+    {
+        clock = Duration.ofMillis( periodLength.toMillis() );
+        
+        stopTime = -1;
+        
         awayScore.setValue(0);
         
         homeScore.setValue(0);
+    }    
+    
+    public void startClock()
+    {
+        Date firstTime = new Date();
+        clickTask = new ClockTask();
+        
+        final long period = Duration.ofSeconds(1).toMillis();
+        startTime = firstTime.getTime();
+        
+        if(stopTime == -1)
+        {
+            // this is the first time the clock is started
+            stopTime = startTime;
+        }
+        
+        timer.schedule(clickTask, firstTime, period);        
+    }
+    
+    public long stopClock()
+    {
+        stopTime = Calendar.getInstance().getTimeInMillis();
+        
+        clickTask.cancel();
+        
+        return clock.toMillis();
     }
     
     public void stopThreads()
@@ -148,24 +184,18 @@ public class FXMLController implements Initializable
     {
         @Override
         public void run()
-        {                
-            clockValue--;
-            
-            if(clockValue < 0)
+        {                                   
+            clock = clock.minus( Duration.ofSeconds(1) );
+            long currentClockTime = clock.toMillis();
+
+            int sec = (int) ((currentClockTime / 1000) % 60);
+            int min = (int) ((currentClockTime / 1000) / 60);
+
+            Platform.runLater(() -> 
             {
-                clockValue = 100;
-            }
-            
-// WHY ISN'T JAVA 8 WORKING?            
-            Platform.runLater( new Runnable()
-            {
-                @Override
-                public void run()
-                {
-                    String clock = "" + clockValue;
-                    clockLabel.setText(clock);
-                }
-            } );
+                String clock = String.format("%02d:%02d", min, sec);
+                clockLabel.setText(clock);
+            });
         }
     }    
 }
