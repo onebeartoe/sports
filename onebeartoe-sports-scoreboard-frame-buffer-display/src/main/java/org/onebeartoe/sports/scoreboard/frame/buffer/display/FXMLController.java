@@ -139,7 +139,7 @@ public class FXMLController implements Initializable
         String fontClasspath = "/" + fontName;
         InputStream instream = getClass().getResourceAsStream(fontClasspath);
         
-        Font font = Font.loadFont(instream, 40);
+        Font font = Font.loadFont(instream, 65);
         
         return font;
     }
@@ -237,8 +237,11 @@ public class FXMLController implements Initializable
 
             Platform.runLater(() -> 
             {
-                String clockLabel = String.format("%02d:%02d", min, sec);
-                clockSecondsLabel.setText(clockLabel);
+                String minutesLabel = String.format("%02d", min);
+                clockSecondsLabel.setText(minutesLabel);
+                
+                String secondsLabel = String.format("%02d", sec);                
+                clockSecondsLabel.setText(secondsLabel);
                 
                 if(clock.toMillis() <= 0)
                 {
