@@ -53,7 +53,14 @@ public class NewGameServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
-        ScoreboardApp.newGame(Duration.ofMinutes(3));
+        String length = request.getParameter("periodLength");
+        int minutes = Integer.valueOf(length);
+        Duration periodLength = Duration.ofMinutes(minutes);
+        
+        String periods = request.getParameter("periods");
+        int periodCount = Integer.valueOf(periods);
+        
+        ScoreboardApp.newGame(periodCount, periodLength);
         
         request.setAttribute("newGame", "A new Game was created.");
         

@@ -63,7 +63,7 @@ public class ScoreboardApp extends Application
         launch(args);
     }
     
-    public static void newGame(Duration periodLenth)
+    public static void newGame(int periodCount, Duration periodLenth)
     {
         if(controller == null)
         {
@@ -71,7 +71,7 @@ public class ScoreboardApp extends Application
         }
         else
         {
-            controller.newGame(1, periodLenth);            
+            controller.newGame(periodCount, periodLenth);            
         }
     }
     

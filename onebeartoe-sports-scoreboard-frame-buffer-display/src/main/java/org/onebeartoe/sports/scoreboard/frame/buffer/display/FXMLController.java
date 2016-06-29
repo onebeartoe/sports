@@ -139,7 +139,7 @@ public class FXMLController implements Initializable
         String fontClasspath = "/" + fontName;
         InputStream instream = getClass().getResourceAsStream(fontClasspath);
         
-        Font font = Font.loadFont(instream, 65);
+        Font font = Font.loadFont(instream, 70);
         
         return font;
     }

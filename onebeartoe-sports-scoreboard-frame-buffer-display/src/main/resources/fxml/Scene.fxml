@@ -35,7 +35,7 @@
                            </font></Label>
                      </center>
                      <bottom>
-                        <Label alignment="TOP_CENTER" contentDisplay="TOP" maxWidth="1.7976931348623157E308" prefHeight="33.0" prefWidth="87.0" text="PERIOD" textAlignment="CENTER" textFill="WHITE" BorderPane.alignment="TOP_CENTER">
+                        <Label alignment="TOP_CENTER" contentDisplay="TOP" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="161.0" text="PERIOD" textAlignment="CENTER" textFill="WHITE" BorderPane.alignment="TOP_CENTER">
                            <font>
                               <Font size="24.0" />
                            </font></Label>
