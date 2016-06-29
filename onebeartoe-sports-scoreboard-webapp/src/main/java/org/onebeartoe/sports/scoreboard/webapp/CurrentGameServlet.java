@@ -19,7 +19,7 @@ import javax.websocket.server.ServerEndpoint;
  *
  * @author Roberto Marquez
  */
-@WebServlet(urlPatterns = {"/game/current"}, loadOnStartup = 1)
+@WebServlet(urlPatterns = {"/current/game/"}, loadOnStartup = 1)
 public class CurrentGameServlet extends HttpServlet
 {
     private Logger logger;

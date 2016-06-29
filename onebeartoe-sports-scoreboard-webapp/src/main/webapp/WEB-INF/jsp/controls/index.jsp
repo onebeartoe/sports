@@ -13,7 +13,7 @@
             </div>
 
             <div id="column2" class="oneThirdColumn">
-                &nbsp;
+                <input type="button" onclick="startClock()" value="Start">
             </div>
 
             <div id="column3" class="oneThirdColumn">
@@ -50,7 +50,7 @@
             </div>
 
             <div id="column2" class="oneThirdColumn">
-                Start
+                <input type="button" onclick="stopClock()" value="Stop">
             </div>
 
             <div id="column3" class="oneThirdColumn">

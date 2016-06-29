@@ -45,8 +45,6 @@ public class FXMLController implements Initializable
     
     private TimerTask clickTask;
     
-//    private int clockValue = 60;
-    
     @FXML
     private Label minutesLabel;
     
@@ -138,7 +136,7 @@ startClock();
         return font;
     }
 
-    public void resetGame()
+    public void newGame(int periodCount, Duration periodLength)
     {
         clock = Duration.ofMillis( periodLength.toMillis() );
         
@@ -147,9 +145,14 @@ startClock();
         awayScore.setValue(0);
         
         homeScore.setValue(0);
+    }
+    
+    public void resetGame()
+    {
+        newGame(1, this.periodLength);
     }    
     
-    public void startClock()
+    public long startClock()
     {
         Date firstTime = new Date();
         clickTask = new ClockTask();
@@ -163,7 +166,9 @@ startClock();
             stopTime = startTime;
         }
         
-        timer.schedule(clickTask, firstTime, period);        
+        timer.schedule(clickTask, firstTime, period);
+
+        return clock.toMillis();
     }
     
     public long stopClock()

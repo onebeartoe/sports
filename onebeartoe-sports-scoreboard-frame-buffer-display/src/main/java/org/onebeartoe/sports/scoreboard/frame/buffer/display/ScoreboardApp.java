@@ -2,6 +2,7 @@
 package org.onebeartoe.sports.scoreboard.frame.buffer.display;
 
 import java.net.URL;
+import java.time.Duration;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -62,6 +63,18 @@ public class ScoreboardApp extends Application
         launch(args);
     }
     
+    public static void newGame(Duration periodLenth)
+    {
+        if(controller == null)
+        {
+            System.out.println("The controller is null.  A new game cannot be made with a null controller");
+        }
+        else
+        {
+            controller.newGame(1, periodLenth);            
+        }
+    }
+    
     private static void resetGame()
     {
         if(controller == null)
@@ -96,5 +109,19 @@ public class ScoreboardApp extends Application
         stage.setTitle("Diego's Basketball Scoreboard");
         stage.setScene(scene);
         stage.show();
+    }
+    
+    public static long startClock()
+    {
+        long time = controller.startClock();
+        
+        return time;
+    }
+    
+    public static long stopClock()
+    {
+        long time = controller.stopClock();
+        
+        return time;
     }
 }

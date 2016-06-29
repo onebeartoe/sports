@@ -78,6 +78,41 @@ function sendRequest(xmlhttp, url)
     xmlhttp.send("p1=a&p2=b");    
 }
 
+function startClock()
+{
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange=function(whw)
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)      
+        {
+            var timeLeft = xmlhttp.responseText;
+                        
+            updateLog(xmlhttp);
+        }
+    }
+    var url = "../game/clock/start";
+    sendRequest(xmlhttp, url);    
+}
+
+function stopClock()
+{
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange=function(whw)
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)      
+        {
+            var timeLeft = xmlhttp.responseText;
+//            document.getElementById("homeScore").innerHTML = timeLeft;
+                        
+            updateLog(xmlhttp);
+        }
+    }
+    var url = "../game/clock/stop";
+    sendRequest(xmlhttp, url);    
+}
+
 function updateLog(xmlhttp)
 {
     var logEntry = xmlhttp.responseText + "<br/>" + document.getElementById("logs").innerHTML;

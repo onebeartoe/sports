@@ -17,21 +17,23 @@ import org.onebeartoe.sports.scoreboard.frame.buffer.display.ScoreboardApp;
  *
  * @author Roberto Marquez
  */
-@WebServlet(urlPatterns = {"/game/away/*", "/game/home/*"})
-public class GameScoreServlet extends HttpServlet
+@WebServlet(urlPatterns = {"/game/clock/*"})
+public class GameClockStartStopServlet extends HttpServlet
 {
     private Logger logger;
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
-        String servletPath = request.getServletPath();
+//        String servletPath = request.getServletPath();
         
         String pi = request.getPathInfo();
         String operation = pi.substring(1);
         
-        String r = getResponse(servletPath, operation);
+        String r = getResponse(
+//                servletPath, 
+                operation);
         
         ServletOutputStream outputStream = response.getOutputStream();
         try (PrintWriter pw = new PrintWriter(outputStream)) 
@@ -39,55 +41,28 @@ public class GameScoreServlet extends HttpServlet
             pw.write(r);
             pw.flush();
         }
-    }
+    }    
 
-    private int getOperation(String operation)
+    private String getResponse(
+//            String servletPath, 
+            String operation)
     {
-        int op;
-        
-        switch (operation)
-        {
-            case "increment":
-            {
-                op = +1;
-                
-                break;
-            }
-            case "decrement":
-            {
-                op = -1;
-                
-                break;
-            }
-            default:
-            {
-                op = 0;
-                
-                logger.log(Level.WARNING, "The score servlet could not determine between incrementing or decremeting the score.");
-            }
-        }
-
-        return op;
-    }
-    
-    private String getResponse(String servletPath, String operation)
-    {
-        int op = getOperation(operation);
+//        int op = getOperation(operation);
         
         String response = "-1";
         
-        switch (servletPath)
+        switch (operation)
         {
-            case "/game/home":
+            case "start":
             {
-                int r = ScoreboardApp.adjustHomeScore(op);
+                long r = ScoreboardApp.startClock();
                 response = String.valueOf(r);
                 
                 break;
             }
-            case "/game/away":
+            case "stop":
             {
-                int r = ScoreboardApp.adjustAwayScore(op);
+                long r = ScoreboardApp.stopClock();
                 
                 response = String.valueOf(r);
                 
@@ -95,16 +70,16 @@ public class GameScoreServlet extends HttpServlet
             }
             default:
             {
-                logger.log(Level.WARNING, "The score servlet could not determine between home and away teams.");
+                logger.log(Level.WARNING, "The game clock servlet could not determine between start and stop states: " + operation);
             }
         }
 
         return response;        
-    }
+    }    
     
     @Override
     public void init() throws ServletException 
     {
         logger = Logger.getLogger(getClass().getName());
-    }
+    }    
 }
