@@ -101,7 +101,7 @@ public class FXMLController implements Initializable
         clockSecondsLabel.setFont(font);
         clockSecondsLabel.setTextFill(Color.YELLOW);
 
-        awayScore = new SimpleIntegerProperty(0);                        
+        awayScore = new SimpleIntegerProperty(0);
         homeScore = new SimpleIntegerProperty(0);
         
         clockMinutesLabel.setFont(font);
@@ -121,9 +121,9 @@ public class FXMLController implements Initializable
         
         clock = Duration.ofMillis( periodLength.toMillis() );
         
-        timer = new Timer();
+        currentPeriod = 1;
         
-//startClock();        
+        timer = new Timer();
     }
 
     /**
@@ -163,7 +163,8 @@ public class FXMLController implements Initializable
                 awayScore.setValue(0);
                 homeScore.setValue(0);
                 
-                clockMinutesLabel.setText( String.valueOf(periodLength) );
+                String minutesText = String.valueOf( periodLength.toMinutes() );
+                clockMinutesLabel.setText(minutesText);
                 clockSecondsLabel.setText("00");
                 
                 currentPeriodLabel.setText("0");
@@ -242,6 +243,9 @@ public class FXMLController implements Initializable
                 if(clock.toMillis() <= 0)
                 {
                     // the period is over
+                    
+                    cancel();                    
+                    
                     playBuzzer();
 
                     currentPeriod++;

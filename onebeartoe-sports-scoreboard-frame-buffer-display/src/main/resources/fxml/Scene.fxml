@@ -47,12 +47,12 @@
          <top>
             <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="clockMinutesLabel" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefHeight="100.0" prefWidth="150.0" text="1" />
+                  <Label fx:id="clockMinutesLabel" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefHeight="100.0" prefWidth="150.0" text="00" />
                   <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="19.0" text=":">
                      <font>
                         <Font size="40.0" />
                      </font></Label>
-                       <Label fx:id="clockSecondsLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="16" minWidth="69" prefHeight="100.0" prefWidth="174.0" textAlignment="CENTER" />
+                       <Label fx:id="clockSecondsLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="16" minWidth="69" prefHeight="100.0" prefWidth="174.0" text="00" textAlignment="CENTER" />
                </children>
             </HBox>
          </top>
