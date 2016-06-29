@@ -1,5 +1,7 @@
 package org.onebeartoe.sports.scoreboard.frame.buffer.display;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.io.InputStream;
 import java.net.URL;
 import java.time.Duration;
@@ -8,7 +10,6 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -30,7 +31,7 @@ import javafx.scene.text.Font;
 public class FXMLController implements Initializable 
 {   
     @FXML
-    private Label clockLabel;
+    private Label clockSecondsLabel;
     
     @FXML
     private Label homeScoreLabel;
@@ -41,12 +42,15 @@ public class FXMLController implements Initializable
     @FXML
     private Label awayScoreLabel;
     
+    @FXML
+    private Label currentPeriodLabel;
+    
     private Timer timer;
     
     private TimerTask clickTask;
     
     @FXML
-    private Label minutesLabel;
+    private Label clockMinutesLabel;
     
     private IntegerProperty awayScore;
     
@@ -59,6 +63,10 @@ public class FXMLController implements Initializable
     private Duration clock;
     
     private Duration periodLength = Duration.ofMinutes(2);
+    
+    private int periodCount;
+    
+    private int currentPeriod;
 
     public int adjustAwayScore(int delta)
     {
@@ -90,14 +98,14 @@ public class FXMLController implements Initializable
         Font font = fourteenSegementFont();
         Background bg = new Background( new BackgroundFill(Color.BLACK, null, null) );
         
-        clockLabel.setFont(font);
-        clockLabel.setTextFill(Color.YELLOW);
+        clockSecondsLabel.setFont(font);
+        clockSecondsLabel.setTextFill(Color.YELLOW);
 
         awayScore = new SimpleIntegerProperty(0);                        
         homeScore = new SimpleIntegerProperty(0);
         
-        minutesLabel.setFont(font);
-        minutesLabel.setTextFill(Color.YELLOW);
+        clockMinutesLabel.setFont(font);
+        clockMinutesLabel.setTextFill(Color.YELLOW);
         
         homeScoreLabel.setFont(font);
         homeScoreLabel.setTextFill(Color.RED);
@@ -115,7 +123,7 @@ public class FXMLController implements Initializable
         
         timer = new Timer();
         
-startClock();        
+//startClock();        
     }
 
     /**
@@ -138,13 +146,29 @@ startClock();
 
     public void newGame(int periodCount, Duration periodLength)
     {
+        stopClock();
+        
+        this.periodCount = periodCount;
+        this.periodLength = periodLength;
+        
+        currentPeriod = 0;
+        
         clock = Duration.ofMillis( periodLength.toMillis() );
         
         stopTime = -1;
         
-        awayScore.setValue(0);
-        
-        homeScore.setValue(0);
+        Platform.runLater( 
+            () -> 
+            {
+                awayScore.setValue(0);
+                homeScore.setValue(0);
+                
+                clockMinutesLabel.setText( String.valueOf(periodLength) );
+                clockSecondsLabel.setText("00");
+                
+                currentPeriodLabel.setText("0");
+            }
+        );
     }
     
     public void resetGame()
@@ -175,7 +199,10 @@ startClock();
     {
         stopTime = Calendar.getInstance().getTimeInMillis();
         
-        clickTask.cancel();
+        if(clickTask != null)
+        {
+            clickTask.cancel();
+        }
         
         return clock.toMillis();
     }
@@ -187,9 +214,20 @@ startClock();
     
     private class ClockTask extends TimerTask
     {
+        URL buzzerUrl;
+        
+        public AudioClip whammySound;
+        
+        public ClockTask()
+        {
+            String path = "/whammy.wav";
+            buzzerUrl = getClass().getResource(path);
+            whammySound = Applet.newAudioClip(buzzerUrl);
+        }
+        
         @Override
         public void run()
-        {                                   
+        {
             clock = clock.minus( Duration.ofSeconds(1) );
             long currentClockTime = clock.toMillis();
 
@@ -198,9 +236,31 @@ startClock();
 
             Platform.runLater(() -> 
             {
-                String clock = String.format("%02d:%02d", min, sec);
-                clockLabel.setText(clock);
+                String clockLabel = String.format("%02d:%02d", min, sec);
+                clockSecondsLabel.setText(clockLabel);
+                
+                if(clock.toMillis() <= 0)
+                {
+                    // the period is over
+                    playBuzzer();
+
+                    currentPeriod++;
+                    
+                    if(currentPeriod >= periodCount)
+                    {
+                        // end of the game
+                    }
+                    else
+                    {
+                        currentPeriodLabel.setText( String.valueOf(currentPeriod) );
+                    }
+                }
             });
+        }
+        
+        private void playBuzzer()
+        {
+            whammySound.play();
         }
     }    
 }
