@@ -1,10 +1,7 @@
-.button {
+
+.button 
+{
     -fx-font-weight: bold;
 }
 
-/*
-.lcd
-{
-    -fx-skin: none;
-}
-*/
+

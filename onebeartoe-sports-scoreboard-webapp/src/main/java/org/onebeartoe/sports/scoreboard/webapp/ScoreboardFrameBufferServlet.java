@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.onebeartoe.chronos.digital.clock.DigitalClock;
+import org.onebeartoe.sports.scoreboard.frame.buffer.display.ScoreboardApp;
 
 /**
  * @author Roberto Marquez
@@ -22,7 +22,11 @@ public class ScoreboardFrameBufferServlet extends HttpServlet
 {
     private Logger logger;
     
-//    private DigitalClock clock;
+    @Override
+    public void destroy()
+    {
+        ScoreboardApp.shutdown();
+    }
     
     @Override
     public void init() throws ServletException 
@@ -31,9 +35,9 @@ public class ScoreboardFrameBufferServlet extends HttpServlet
         
         logger = Logger.getLogger( getClass().getName() );
    
-        logger.log(Level.INFO, "loading clock yay!");
-//        clock = new DigitalClock();
-        Application.launch(DigitalClock.class);
+        logger.log(Level.INFO, "loading the scoreboard");
+
+        Application.launch(ScoreboardApp.class);
     }
     
     @Override

@@ -19,7 +19,7 @@
     <name>onebeartoe-sports-scoreboard-frame-buffer-display</name>
 
     <properties>
-        <mainClass>org.onebeartoe.sports.scoreboard.frame.buffer.display.MainApp</mainClass>
+        <mainClass>org.onebeartoe.sports.scoreboard.frame.buffer.display.ScoreboardApp</mainClass>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
@@ -99,8 +99,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                     <compilerArguments>
                         <bootclasspath>${sun.boot.class.path}${path.separator}${java.home}/lib/jfxrt.jar</bootclasspath>
                     </compilerArguments>
