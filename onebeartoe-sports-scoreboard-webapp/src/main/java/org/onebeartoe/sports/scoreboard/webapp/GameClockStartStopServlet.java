@@ -36,11 +36,13 @@ public class GameClockStartStopServlet extends HttpServlet
                 operation);
         
         ServletOutputStream outputStream = response.getOutputStream();
-        try (PrintWriter pw = new PrintWriter(outputStream)) 
-        {
+  //      try (
+                PrintWriter pw = new PrintWriter(outputStream);
+//                ) 
+//        {
             pw.write(r);
             pw.flush();
-        }
+  //      }
     }    
 
     private String getResponse(
